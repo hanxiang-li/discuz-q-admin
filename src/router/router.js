@@ -17,7 +17,6 @@ Vue.use(VueRouter)
 //创建路由
 export const createRouter = () => new VueRouter({
   mode: 'history',
-  base: "/pc-admin",
   routes: [...PageRouter, ...ViewsRouter]
 })
 const Router = createRouter()

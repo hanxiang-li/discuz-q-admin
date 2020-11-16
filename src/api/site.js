@@ -7,8 +7,8 @@ export const querySiteinfo = () => request({
 })
 
 // 获取站点配置
-export const queryForum = () => request({
-	url: '/api/forum',
+export const queryForum = (data) => request({
+	url: '/api/forum' + (data !== undefined ? data : ''),
 	method: 'get',
 })
 

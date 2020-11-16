@@ -4,7 +4,7 @@
       <div class="avue-breadcrumb"
            :class="[{ 'avue-breadcrumb--active': isCollapse }]"
            v-if="showCollapse">
-        <i class="icon-navicon"
+        <i class="icon-menu"
            @click="setCollapse"></i>
       </div>
     </div>

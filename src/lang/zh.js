@@ -109,5 +109,8 @@ export default {
     menu: '更多',
     closeOthers: '关闭其它',
     closeAll: '关闭所有'
+  },
+  msg: {
+    success: '操作成功'
   }
 }

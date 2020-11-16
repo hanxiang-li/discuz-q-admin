@@ -1,4 +1,3 @@
-import { setToken, removeToken } from '@/util/auth'
 import { setStore, getStore } from '@/util/store'
 import { isURL, validatenull } from '@/util/validate'
 import { deepClone } from '@/util/util'
@@ -97,7 +96,6 @@ const user = {
         commit('SET_ROLES', [])
         commit('DEL_ALL_TAG');
         commit('CLEAR_LOCK');
-        removeToken()
         resolve()
       })
     },
@@ -112,7 +110,6 @@ const user = {
         commit('SET_ROLES', [])
         commit('DEL_ALL_TAG');
         commit('CLEAR_LOCK');
-        removeToken()
         resolve()
       })
     },
@@ -135,9 +132,8 @@ const user = {
   },
   mutations: {
     SET_TOKEN: (state, token) => {
-      setToken(token)
       state.token = token;
-      setStore({ name: 'token', content: state.token })
+      setStore({ name: 'token', content: state.token, type: 'session'  })
     },
     SET_MENUID (state, menuId) {
       state.menuId = menuId;
@@ -168,7 +164,6 @@ const user = {
         }
         if (flag) newMenu.push(item1);
       }
-      console.log(newMenu)
       state.menuAll = newMenu
       setStore({ name: 'menuAll', content: state.menuAll, type: 'session' })
     },

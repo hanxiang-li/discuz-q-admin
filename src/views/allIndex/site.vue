@@ -1,6 +1,7 @@
 <template>
 <div>
-  <avue-form ref="form" v-model="obj" :option="option" @submit="submit" style="margin: 5px;">
+  <avue-form ref="form" v-model="obj" :option="option" @submit="submit" style="margin: 5px;"  v-loading="loading"
+             element-loading-text="信息读取中，时间过长请刷新">
     <template slot-scope="scope" slot="logo">
       <div>
         <el-upload
@@ -223,6 +224,7 @@ export default {
       },
       dialogMode: false,
       flag: 0,
+      loading: false
     }
   },
   created() {
@@ -230,10 +232,12 @@ export default {
   },
   methods: {
     init(){
+      this.loading = true
       queryForum().then(res => {
         let data = dataFormatter(res).set_site
         data['site_author'] = data['site_author'].id
         this.obj = data
+        this.loading = false
       })
     },
     beforeAvatarUpload(data, type){

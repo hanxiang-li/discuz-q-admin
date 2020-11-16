@@ -5,7 +5,6 @@
 import router from './router/router'
 import store from './store'
 import { validatenull } from '@/util/validate'
-import { getToken } from '@/util/auth'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 NProgress.configure({ showSpinner: false });
@@ -14,7 +13,7 @@ router.beforeEach((to, from, next) => {
   const meta = to.meta || {};
   const isMenu = meta.menu === undefined ? to.query.menu : meta.menu;
   store.commit('SET_IS_MENU', isMenu === undefined);
-  if (getToken()) {
+  if (store.getters.token) {
     if (store.getters.isLock && to.path !== lockPage) { //如果系统激活锁屏，全部跳转到锁屏页
       next({ path: lockPage })
     } else if (to.path === '/login') { //如果登录成功访问登录页跳转到主页

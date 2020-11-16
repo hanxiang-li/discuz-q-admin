@@ -7,13 +7,13 @@
  */
 import axios from 'axios'
 import { serialize } from '@/util/util'
-import { getToken } from '@/util/auth'
 import { Message } from 'element-ui'
 import website from '@/config/website';
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { baseUrl } from '@/config/env';
 import { dataFormatter } from '@/util/tools'
+import store from "@/store";
 const request = axios.create({
   baseURL: baseUrl,
   timeout: 30000
@@ -30,8 +30,8 @@ request.interceptors.request.use(config => {
   NProgress.start() // start progress bar
   const meta = (config.meta || {});
   const isToken = meta.isToken === false;
-  if (getToken() && !isToken) {
-    config.headers[website.Authorization] = getToken() // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
+  if (store.getters.token && !isToken) {
+    config.headers[website.Authorization] = store.getters.token // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
   }
   if (config.method === 'get' && config.dat){
     config.url += '?' + serialize(config.data)
