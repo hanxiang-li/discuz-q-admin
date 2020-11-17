@@ -44,9 +44,17 @@
       </template>
       <template slot-scope="{value}" slot="bq">
         <div>
+          <span>使用的框架：
+            <a href="https://element.eleme.cn/#/zh-CN" target="_blank">Element</a>、
+            <a href="https://avuejs.com" target="_blank">Avuejs</a>
+          </span>
+          <br />
+          <span style="color: red;">所有请求Api接口均为Discuz！Q自有接口</span>
+          <br />
           <span style="color: red;">此后台管理程序目前完全免费使用，请勿用于商业用途！！！</span>
-          <br/>
-          <span>https://work100.com.cn 提供技术支持，关注微信公众号：work100 获取更多资讯</span>
+          <br />
+          <span><a href="https://work100.com.cn" target="_blank">https://work100.com.cn</a> 提供技术支持，关注微信公众号：work100 获取更多资讯</span>
+          <br />
         </div>
       </template>
     </avue-form>
@@ -142,20 +150,6 @@ export default {
                 prop: 'db_size',
                 formslot: true,
                 span: 6,
-              },
-            ]
-          },
-          {
-            icon: 'el-icon-info',
-            label: '使用说明',
-            collapse: false,
-            prop: 'group3',
-            column: [
-              {
-                label: '说明',
-                prop: 'sysm',
-                formslot: true,
-                span: 24,
               },
             ]
           },

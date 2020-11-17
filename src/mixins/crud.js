@@ -1,4 +1,3 @@
-
 export default (app, option = {}) => {
   let mixins = {
     data () {
@@ -6,17 +5,17 @@ export default (app, option = {}) => {
         data: [],
         form: {},
         params: {},
-        api: require(`@/api/${option.name}`),
+        api: require(`@/api/${option.apiName || option.name}`),
         loading: false,
         page: {
           pageSize: 20,
-          pageSizes: [ 20, 50]
+          pageSizes: [ 20, 50, 100, 150, 300]
         },
       }
     },
     computed: {
       option () {
-        return require(`@/option/${option.name}`).default(this)
+        return require(`@/option/${option.columnName || option.name}`).default(this)
       },
       bindVal () {
         return {
@@ -58,7 +57,7 @@ export default (app, option = {}) => {
             } else {
               data = res.data.data
             }
-            this.page.total = res.meta.total || res.meta.threadCount;
+            this.page.total =  res.meta['total' || 'threadCount'];
             this.data = data[option.data || 'data'];
             if (this.listAfter) {
               this.listAfter(data)
@@ -87,6 +86,9 @@ export default (app, option = {}) => {
           })
         }
         if (this.addBefore) {
+          if (this.form && this.option.cellBtn){
+            this.form = row
+          }
           this.addBefore()
         }
         callback()
@@ -96,24 +98,29 @@ export default (app, option = {}) => {
           delete this.form.params;
           this.api[option.update || 'update'](this.form).then((data) => {
             if (this.updateAfter) {
-              this.updateAfter(data, done, loading)
+              this.updateAfter(data, done, loading, index)
             } else {
-              this.getList();
+              if (!this.option.cellBtn){
+                this.getList();
+              }
               done()
               loading()
             }
-          }).catch(() => {
+          }).catch((err) => {
             loading()
           })
         }
         if (this.updateBefore) {
+          if (this.form && this.option.cellBtn){
+            this.form = row
+          }
           this.updateBefore()
         }
         callback()
       },
       rowDel (row, index) {
-        const callback = () => {
-          this.api[option.del || 'del'](row).then((data) => {
+        const callback = (data) => {
+          this.api[option.del || 'del'](data || row).then((data) => {
             if (this.delAfter) {
               this.delAfter(data, row, index)
             } else {

@@ -30,6 +30,18 @@ export default {
 			icon: 'icon-file-GIF',
 			component: 'views/allIndex/annex',
 		},
+		{
+			label: "水印设置",
+			path: "/water-mark-set",
+			icon: 'icon-file-image',
+			component: 'views/allIndex/waterMark',
+		},
+		{
+			label: "过滤设置",
+			path: "/content-filter-set",
+			icon: 'icon-filter',
+			component: 'views/allIndex/contentFilter',
+		},
 	],
 	'1': [
 		{

@@ -31,7 +31,7 @@
         </el-upload>
         <el-upload
             class="avatar-uploader"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="#"
             :show-file-list="false"
             :before-upload="(file) => {beforeAvatarUpload(file, 'background_image')}">
           <el-image v-if="obj.site_background_image" :src="obj.site_background_image" class="avatar" />
@@ -74,7 +74,7 @@
 
 <script>
 import {queryForum, setSettingsLogo, updateSiteSet} from "@/api/site";
-import {dataFormatter, dataSerialize} from "@/util/tools";
+import {dataFormatter} from "@/util/tools";
 import {errorMsg, okMsg} from "@/util/msg";
 export default {
   name: "site",

@@ -7,7 +7,8 @@ export default [{
     path: 'index',
     name: '首页',
     meta: {
-      i18n: 'dashboard'
+      i18n: 'dashboard',
+      keepAlive: true,
     },
     component: () =>
       import( /* webpackChunkName: "views" */ '@/views/wel/index')

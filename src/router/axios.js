@@ -33,7 +33,7 @@ request.interceptors.request.use(config => {
   if (store.getters.token && !isToken) {
     config.headers[website.Authorization] = store.getters.token // 让每个请求携带token--['Authorization']为自定义key 请根据实际情况自行修改
   }
-  if (config.method === 'get' && config.dat){
+  if (config.method === 'get' && config.data){
     config.url += '?' + serialize(config.data)
   }
   //headers中配置serialize为true开启序列化
@@ -57,34 +57,30 @@ request.interceptors.response.use(
       }
     },
     (error) => {
-      let isFlag = true
+      NProgress.done();
       let info = []
-      error.response.data.errors.forEach(i => {
-        if (i.status){
-          isFlag = false
-        } else {
-          try {
-            i.detail.forEach(k => {
-              info.push(k)
-            })
-          } catch (e){
-            info.push(i.detail)
-          }
+      const data = error.response.data.errors
+      for (let i = 0; i < data.length; i++) {
+        const value = data[i]
+        try {
+          value.detail.forEach(k => {
+            info.push(k)
+          })
+        } catch (e){
+          info.push(value.detail)
         }
-      })
-      if (isFlag){
-        let txt = ''
-        info.forEach((i, k) => {
-          txt += '<br>' + (k + 1 ) + '.' + i + '<br>'
-        })
-        Message({
-          center: true,
-          message: '温馨提示：有 ' + info.length + ' 条错误信息<br>' + txt,
-          dangerouslyUseHTMLString: true,
-          type: 'error',
-          duration: 5 * 1000
-        })
       }
+      let txt = ''
+      info.forEach((i, k) => {
+        txt += '<br>' + (k + 1 ) + '.' + i + '<br>'
+      })
+      Message({
+        center: true,
+        message: '温馨提示：有 ' + info.length + ' 条错误信息<br>' + txt,
+        dangerouslyUseHTMLString: true,
+        type: 'error',
+        duration: 5 * 1000
+      })
       return Promise.reject(error)
     }
 )

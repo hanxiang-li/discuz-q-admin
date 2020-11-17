@@ -20,6 +20,13 @@ export const setSettingsLogo = (data) => request({
 	data
 })
 
+// 删除logo
+export const deleteLogo = (data) => request({
+	url: '/api/settings/logo',
+	method: 'delete',
+	data
+})
+
 // 修改站点设置
 export const updateSiteSet = (data) => request({
 	url: '/api/settings',
@@ -31,5 +38,25 @@ export const updateSiteSet = (data) => request({
 export const cache = () => request({
 	url: '/api/cache',
 	method: 'DELETE',
+})
+
+// 查询过滤列表
+export const queryContentFilterList = (data) => request({
+	url: '/api/stop-words',
+	method: 'get',
+	data
+})
+
+// 修改单条过滤记录
+export const updateContentFilter = (data) => request({
+	url: '/api/stop-words' + (data.isAdd ? '' : '/' + data.data.id),
+	method: data.isAdd ? 'post' : 'patch',
+	data
+})
+
+// 删除过滤记录
+export const deleteContentFilter = (data) => request({
+	url: '/api/stop-words/' + data,
+	method: 'delete'
 })
 
