@@ -42,6 +42,12 @@ export default {
 			icon: 'icon-filter',
 			component: 'views/allIndex/contentFilter',
 		},
+		{
+			label: "腾讯云设置",
+			path: "/tencent-cloud-set",
+			icon: 'el-icon-cloudy',
+			component: 'views/allIndex/tencentCloud',
+		},
 	],
 	'1': [
 		{

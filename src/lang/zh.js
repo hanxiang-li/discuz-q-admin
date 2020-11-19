@@ -112,5 +112,14 @@ export default {
   },
   msg: {
     success: '操作成功'
+  },
+  tencent: {
+    AuthFailure: {
+      SecretIdNotFound: '腾讯云Secretid不正确',
+      SignatureFailure: "腾讯云SecretKey不正确"
+    },
+    UnauthorizedOperation: {
+      SmsSdkAppidVerifyFail: '短信App Id 配置错误'
+    }
   }
 }

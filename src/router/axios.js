@@ -7,13 +7,14 @@
  */
 import axios from 'axios'
 import { serialize } from '@/util/util'
-import { Message } from 'element-ui'
+import { Notification  } from 'element-ui'
 import website from '@/config/website';
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { baseUrl } from '@/config/env';
 import { dataFormatter } from '@/util/tools'
 import store from "@/store";
+import i18n from "@/lang";
 const request = axios.create({
   baseURL: baseUrl,
   timeout: 30000
@@ -72,9 +73,9 @@ request.interceptors.response.use(
       }
       let txt = ''
       info.forEach((i, k) => {
-        txt += '<br>' + (k + 1 ) + '.' + i + '<br>'
+        txt += '<br>' + (k + 1 ) + '.' + i18n.tc(i + '') + '<br>'
       })
-      Message({
+      Notification({
         center: true,
         message: '温馨提示：有 ' + info.length + ' 条错误信息<br>' + txt,
         dangerouslyUseHTMLString: true,

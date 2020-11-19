@@ -110,5 +110,10 @@ export default {
     menu: 'menu',
     closeOthers: 'Close Others',
     closeAll: 'Close All'
+  },
+  tencent: {
+    AuthFailure: {
+      SignatureFailure: "参数错误"
+    }
   }
 }
