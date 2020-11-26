@@ -113,6 +113,7 @@ export default {
   msg: {
     success: '操作成功'
   },
+  notification_is_missing_template_config: '微信推送信息不全',
   tencent: {
     AuthFailure: {
       SecretIdNotFound: '腾讯云Secretid不正确',

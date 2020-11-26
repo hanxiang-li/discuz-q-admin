@@ -48,6 +48,18 @@ export default {
 			icon: 'el-icon-cloudy',
 			component: 'views/allIndex/tencentCloud',
 		},
+		{
+			label: "通知设置",
+			path: "/system-notice-set",
+			icon: 'el-icon-bell',
+			component: 'views/allIndex/noticeSet',
+		},
+		{
+			label: "其他服务设置",
+			path: "/system-other-set",
+			icon: 'el-icon-wind-power',
+			component: 'views/allIndex/otherSet',
+		},
 	],
 	'1': [
 		{

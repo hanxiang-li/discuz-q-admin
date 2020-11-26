@@ -60,3 +60,17 @@ export const deleteContentFilter = (data) => request({
 	method: 'delete'
 })
 
+// 获取通知内容
+export const queryNotice = (data) => request({
+	url: '/api/notification/tpl',
+	method: 'get',
+	data
+})
+
+// 修改通知内容
+export const updateNotice = (data) => request({
+	url: '/api/notification/tpl/' + data.id,
+	method: 'PATCH',
+	data
+})
+

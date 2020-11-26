@@ -68,7 +68,7 @@ request.interceptors.response.use(
             info.push(k)
           })
         } catch (e){
-          info.push(value.detail)
+          info.push(value.detail || value.code)
         }
       }
       let txt = ''
