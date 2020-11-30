@@ -4,45 +4,40 @@ export default () => {
   return {
     align:'center',
     width: 100,
-    searchShow: false,
     addBtn: false,
     height: getLocal('height') - 30 ,
-    searchMenuSpan: 6,
-    searchIndex: 4,
     column:[
       {
         label: '编号',
         prop: 'id',
-        search: true,
-        searchSpan: 4,
-      },
-      {
-        label: '头像',
-        prop: 'avatarUrl',
-        slot: true,
+        editDisplay: false,
       },
       {
         label: '用户名',
         prop: 'username',
         overHidden: true,
-        search:true,
-        searchSpan: 4,
+      },
+      {
+        label: '头像',
+        prop: 'avatarUrl',
+        slot: true,
+        formslot:true,
       },
       {
         label: '手机号码',
         prop: 'originalMobile',
         overHidden: true,
-        search:true,
-        searchSpan: 4,
       },
       {
         label: '主题数',
         prop: 'threadCount',
+        editDisplay: false,
       },
       {
         label: '用户组',
         prop: 'groups',
         overHidden: true,
+        formslot:true,
         formatter: function(row){
           let name = ''
           row.groups.forEach(i => {
@@ -53,15 +48,16 @@ export default () => {
       },
       {
         label: '是否付费',
-        prop: 'isPaid',
+        prop: 'expiredAt',
+        labelslot: true,
         slot: true,
+        type: 'datetime',
+        format: 'yyyy-MM-dd HH:mm:ss',
       },
       {
         label: '状态',
         prop: 'status',
         type: 'select',
-        search:true,
-        searchSpan: 4,
         dicData: [
           {
             label: '正常',
@@ -79,13 +75,14 @@ export default () => {
             label: '审核拒绝',
             value: 3,
           },
-        ]
+        ],
       },
       {
-        label: '上次登录日期',
+        label: '登录时间',
         prop: 'loginAt',
         type: 'date',
-        format: 'yyyy-MM-dd HH:mm:ss'
+        format: 'yyyy-MM-dd HH:mm:ss',
+        editDisplay: false,
       },
     ]
   }
