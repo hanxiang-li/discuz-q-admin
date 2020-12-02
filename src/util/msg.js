@@ -84,3 +84,14 @@ export const notificationMsg = (msg, type) => {
 	})
 }
 
+export const promptValidator = (val, msg) => {
+	let validator = (val) => {
+		if(!val){
+			return msg
+		}
+		return true
+	}
+	return validator(val)
+}
+
+

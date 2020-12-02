@@ -5,6 +5,8 @@ export default () => {
     align:'center',
     width: 100,
     addBtn: false,
+    editBtn: false,
+    delBtn: false,
     height: getLocal('height') - 30 ,
     column:[
       {
@@ -38,13 +40,7 @@ export default () => {
         prop: 'groups',
         overHidden: true,
         formslot:true,
-        formatter: function(row){
-          let name = ''
-          row.groups.forEach(i => {
-            name += i.name + '、'
-          })
-          return name.slice(0,name.length-1)
-        },
+        slot: true,
       },
       {
         label: '是否付费',
@@ -53,6 +49,10 @@ export default () => {
         slot: true,
         type: 'datetime',
         format: 'yyyy-MM-dd HH:mm:ss',
+      },
+      {
+        label: '注册渠道',
+        prop: 'registerReason',
       },
       {
         label: '状态',
@@ -76,6 +76,14 @@ export default () => {
             value: 3,
           },
         ],
+      },
+      {
+        label: '禁用原因',
+        prop: 'banReason',
+        formslot:true,
+        labelslot: true,
+        hide: true,
+        span: 24,
       },
       {
         label: '登录时间',

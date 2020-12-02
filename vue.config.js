@@ -1,5 +1,5 @@
 // 基础路径 注意发布之前要先修改这里
-let baseUrl = '/'
+let baseUrl = process.env.NODE_ENV === "development" ? '/' : '/dzq-admin/'
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 module.exports = {
   baseUrl: baseUrl, // 根据你的实际情况更改这里

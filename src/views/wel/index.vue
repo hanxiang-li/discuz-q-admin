@@ -55,6 +55,10 @@
           <br />
           <span><a href="https://work100.com.cn" target="_blank">https://work100.com.cn</a> 提供技术支持，关注微信公众号：work100 获取更多资讯</span>
           <br />
+          <span>开源地址：
+            <a href="https://github.com/work100-org/discuz-q-admin" target="_blank">Github</a> 、
+            <a href="https://git.work100.com.cn/work/discuz-q-admin" target="_blank">Gitlab</a>
+          </span>
         </div>
       </template>
     </avue-form>

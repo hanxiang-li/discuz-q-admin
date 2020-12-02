@@ -17,6 +17,7 @@ Vue.use(VueRouter)
 //创建路由
 export const createRouter = () => new VueRouter({
   mode: 'history',
+  base: process.env.NODE_ENV === "development" ? '/' : '/dzq-admin/',
   routes: [...PageRouter, ...ViewsRouter]
 })
 const Router = createRouter()
