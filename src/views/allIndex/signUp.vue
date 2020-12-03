@@ -9,8 +9,8 @@
       <el-form-item label="注册于登录模式">
         <el-radio-group v-model="data.reg.register_type" class="input">
           <el-radio :label="0">用户名模式</el-radio>
-          <el-radio :label="1">手机号模式</el-radio>
-          <el-radio :label="2">微信无感模式</el-radio>
+          <el-radio :label="1" :disabled="qcloud_sms">手机号模式</el-radio>
+          <el-radio :label="2" :disabled="qcloud_wx">微信无感模式</el-radio>
         </el-radio-group>
         <el-tag type="info">
           开启用户名模式后，将以用户名密码为核心进行注册和登录。开启手机号模式后，将以手机号为核心进行注册和登录。开启微信无感模式后，微信内将自动注册和登录，且各端的注册和登录，将仅支持微信。
@@ -88,7 +88,9 @@ export default {
         agreement: {}
       },
       loading: false,
-      height: getLocal('height') + 50
+      height: getLocal('height') + 50,
+      qcloud_sms: false,
+      qcloud_wx: false,
     }
   },
   mounted() {
@@ -101,8 +103,10 @@ export default {
         let data = dataFormatter(res)
         this.data = {
           agreement: data.agreement,
-          reg: data.set_reg
+          reg: data.set_reg,
         }
+        this.qcloud_sms = data.qcloud.qcloud_sms !== true
+        this.qcloud_wx = !(data.passport.offiaccount_close === true || data.passport.miniprogram_close === true);
         this.loading = false
       })
     },

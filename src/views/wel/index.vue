@@ -55,7 +55,15 @@
           <br />
           <span><a href="https://work100.com.cn" target="_blank">https://work100.com.cn</a> 提供技术支持，关注微信公众号：work100 获取更多资讯</span>
           <br />
+          <span>开源地址：
+            <a href="https://github.com/work100-org/discuz-q-admin" target="_blank">Github</a> 、
+            <a href="https://git.work100.com.cn/work/discuz-q-admin" target="_blank">Gitlab</a> 、
+            <a href="https://gitee.com/web-work/discuz-q-admin" target="_blank">Gitee</a>
+          </span>
         </div>
+      </template>
+      <template slot-scope="{value}" slot="gx">
+        <span>感谢Discuz！Q团队中的 锦书爸爸、流火行者、猛子 给予的相关问题解答</span>
       </template>
     </avue-form>
   </el-card>
@@ -162,6 +170,12 @@ export default {
               {
                 label: '申明',
                 prop: 'bq',
+                formslot: true,
+                span: 24,
+              },
+              {
+                label: '感谢',
+                prop: 'gx',
                 formslot: true,
                 span: 24,
               },

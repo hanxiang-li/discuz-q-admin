@@ -74,3 +74,10 @@ export const updateNotice = (data) => request({
 	data
 })
 
+// 获取用户组
+export const queryGroups = () => request({
+	url: '/api/groups',
+	method: 'get',
+})
+
+

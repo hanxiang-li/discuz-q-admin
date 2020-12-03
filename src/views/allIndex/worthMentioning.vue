@@ -27,6 +27,19 @@
     </el-card>
     <el-card class="box-card" style="margin-top: 5px;">
       <div slot="header" class="clearfix">
+        <span>腾讯QQ设置</span>
+      </div>
+
+      <el-form-item label="APP ID">
+        <el-input v-model="data.qq_oplatform_app_id" class="input"/>
+      </el-form-item>
+
+      <el-form-item label="App Secret">
+        <el-input v-model="data.qq_oplatform_app_key" class="input"/>
+      </el-form-item>
+    </el-card>
+    <el-card class="box-card" style="margin-top: 5px;">
+      <div slot="header" class="clearfix">
         <span>小程序配置</span>
         <span style="font-size: 12px;margin-left: 10px;color: red;">* 用户在小程序使用微信授权登录</span>
       </div>
@@ -110,7 +123,9 @@ export default {
       let list = []
       for (let key in this.data) {
         let tag = ''
-        if (key.includes('offiaccount')){
+        if (key === 'qq_oplatform_app_id' || key === 'qq_oplatform_app_key'){
+          tag = 'qq_oplatform'
+        } else if (key.includes('offiaccount')){
           tag = 'wx_offiaccount'
         } else if (key.includes('oplatform')){
           tag = 'wx_oplatform'

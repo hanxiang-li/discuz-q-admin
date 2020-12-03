@@ -55,3 +55,68 @@ export const getObjType = obj => {
   }
   return map[toString.call(obj)];
 };
+
+export const analyzingData = (data, included) => {
+  included  = included ? included : [];
+
+  var newIncludes = {};
+  included.forEach(function(nowOne) {
+    newIncludes[nowOne.type+nowOne.id] = nowOne;
+  })
+
+  /**
+   * 获取一条数据真实数据
+   * @return {[type]} [description]
+   */
+  function getOneData(nowData) {
+    var result = {};
+
+    //没有值时返回空对象
+    if(!nowData) return result;
+
+    if(!nowData.attributes) {
+      nowData = newIncludes[nowData.type+nowData.id];
+    }
+    // else{
+    //   result._data = nowData.attributes;
+    // }
+
+    result._data = nowData.attributes;
+    if(nowData.id) result._data.id = nowData.id; //有id时将id加入_data
+
+    if(nowData.relationships) {
+      var relationObj = {};
+
+      for(var relationKey in nowData.relationships) {
+        relationObj[relationKey] = getData(nowData.relationships[relationKey].data);
+      }
+
+      result = {...result, ...relationObj};
+    }
+
+    return result;
+  }
+
+  /**
+   * 获取一条数据和一组数据
+   * @param  {[type]} nowData [description]
+   * @return {[type]}         [description]
+   */
+  function getData(nowData) {
+    var result = {};
+
+    if(nowData instanceof Array) {
+      result = [];
+
+      nowData.forEach(function(nowOne) {
+        result.push(getOneData(nowOne));
+      });
+    } else {
+      result = getOneData(nowData);
+    }
+
+    return result;
+  }
+
+  return getData(data, included);
+}

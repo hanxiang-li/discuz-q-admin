@@ -26,21 +26,23 @@
     请选择图片（.png格式）进行上传
   </div>
   <br />
-  <label>水印位置</label>
-  <br />
-  <el-radio-group v-model="data.position">
-    <el-radio-button :label="1" class="radio">左上</el-radio-button>
-    <el-radio-button :label="2" class="radio">中上</el-radio-button>
-    <el-radio-button :label="3" class="radio">右上</el-radio-button>
+  <div>
+    <label>水印位置</label>
     <br />
-    <el-radio-button :label="4" class="radio">左中</el-radio-button>
-    <el-radio-button :label="5" class="radio">居中</el-radio-button>
-    <el-radio-button :label="6" class="radio">右中</el-radio-button>
-    <br />
-    <el-radio-button :label="7" class="radio">左下</el-radio-button>
-    <el-radio-button :label="8" class="radio">中下</el-radio-button>
-    <el-radio-button :label="9" class="radio">右下</el-radio-button>
-  </el-radio-group>
+    <el-radio-group v-model="data.position">
+      <el-radio-button :label="1" class="radio">左上</el-radio-button>
+      <el-radio-button :label="2" class="radio">中上</el-radio-button>
+      <el-radio-button :label="3" class="radio">右上</el-radio-button>
+      <br />
+      <el-radio-button :label="4" class="radio">左中</el-radio-button>
+      <el-radio-button :label="5" class="radio">居中</el-radio-button>
+      <el-radio-button :label="6" class="radio">右中</el-radio-button>
+      <br />
+      <el-radio-button :label="7" class="radio">左下</el-radio-button>
+      <el-radio-button :label="8" class="radio">中下</el-radio-button>
+      <el-radio-button :label="9" class="radio">右下</el-radio-button>
+    </el-radio-group>
+  </div>
   <br />
   <label>边距</label>
   <br />
@@ -93,14 +95,16 @@ export default {
       this.loading = true
       let list = []
       for (let key in this.data) {
-        let val = {
-          attributes: {
-            key: key,
-            tag: "watermark",
-            value: this.data[key],
+        if (key !== 'watermark_image'){
+          let val = {
+            attributes: {
+              key: key,
+              tag: "watermark",
+              value: this.data[key],
+            }
           }
+          list.push(val)
         }
-        list.push(val)
       }
       updateSiteSet({data: list}).then(res => {
         okMsg()
