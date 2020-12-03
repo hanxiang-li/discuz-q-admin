@@ -68,5 +68,11 @@ export default {
 			icon: 'el-icon-user',
 			component: 'views/user/user',
 		},
+		{
+			label: "角色管理",
+			path: "/user-role-set",
+			icon: 'el-icon-s-custom',
+			component: 'views/user/role',
+		},
 	]
 }
