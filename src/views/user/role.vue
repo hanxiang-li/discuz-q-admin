@@ -13,7 +13,7 @@
       <table class="tg">
         <thead>
         <tr>
-          <th class="tg-gmla">选择</th>
+          <th class="tg-gmla" style="width: 20px;">选择</th>
           <th class="tg-0pky">级别名称</th>
           <th class="tg-0pky">显示组名</th>
           <th class="tg-0lax">是否默认</th>
@@ -22,7 +22,7 @@
         </thead>
         <tbody>
           <tr v-for="(role, k) in dataRole">
-            <td class="tg-0lax" style="text-align: center;width: 20px;">
+            <td class="tg-0lax" style="text-align: center;width: 40px;">
               <el-checkbox :label="role" style="margin-top: 8px;" v-if="role.id > 10">{{ k + 1 }}</el-checkbox>
             </td>
             <td class="tg-0lax">

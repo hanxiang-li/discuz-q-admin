@@ -74,5 +74,11 @@ export default {
 			icon: 'el-icon-s-custom',
 			component: 'views/user/role',
 		},
+		{
+			label: "用户审核",
+			path: "/user-review-set",
+			icon: 'el-icon-s-check',
+			component: 'views/user/userReview',
+		},
 	]
 }

@@ -17,6 +17,12 @@ export const updateUser = (data) => request({
 	data
 })
 
+export const updateUserList = (data) => request({
+	url: `/api/users`,
+	method: 'PATCH',
+	data
+})
+
 // 获取用户钱包
 export const queryUserWallet = (id) => request({
 	url: `/api/wallet/user/${id}`,
@@ -30,4 +36,10 @@ export const updateUserWallet = (data) => request({
 	data
 })
 
+// 查询审核用户
+export const queryUserReviewList = (data) => request({
+	url: '/api/users',
+	method: 'get',
+	data
+})
 
