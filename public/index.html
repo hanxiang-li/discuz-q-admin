@@ -10,7 +10,7 @@
   <meta name="format-detection" content="telephone=no">
   <meta http-equiv="X-UA-Compatible" content="chrome=1" />
   <link rel="stylesheet" href="<%= BASE_URL %>cdn/element-ui/2.14.1/theme-chalk/index.css">
-  <link rel="stylesheet" href="<%= BASE_URL %>cdn/avue/2.7.1/index.css">
+  <link rel="stylesheet" href="<%= BASE_URL %>cdn/avue/2.7.3/index.css">
   <link rel="stylesheet" href="<%= BASE_URL %>cdn/animate/3.5.2/animate.css">
   <link rel="stylesheet" href="<%= BASE_URL %>cdn/iconfont/1.0.0/index.css">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
@@ -71,6 +71,57 @@
       color: #ABABAB;
       font-size: 12px;
     }
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+
+    .avue-crud__menu {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        max-height: 40px;
+        height: auto;
+        overflow: hidden;
+        margin-bottom: 5px;
+        background-color: #fff;
+    }
+    .av
+    atar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+    }
+
+    .avue-crud__left {
+        margin-top: 4px;
+        margin-bottom: 0!important;
+    }
+
+    .avue-crud__right{
+        margin-top: 4px;
+        margin-bottom: 0!important;
+    }
   </style>
 </head>
 
@@ -104,7 +155,7 @@
   <script src="<%= BASE_URL %>cdn/vue-router/3.0.1/vue-router.min.js" charset="utf-8"></script>
   <script src="<%= BASE_URL %>cdn/axios/1.0.0/axios.min.js" charset="utf-8"></script>
   <script src="<%= BASE_URL %>cdn/element-ui/2.14.1/index.js" charset="utf-8"></script>
-  <script src="<%= BASE_URL %>cdn/avue/2.7.1/avue.min.js" charset="utf-8"></script>
+  <script src="<%= BASE_URL %>cdn/avue/2.7.3/avue.min.js" charset="utf-8"></script>
 </body>
 
 </html>
