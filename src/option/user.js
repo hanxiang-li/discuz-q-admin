@@ -7,7 +7,7 @@ export default () => {
     addBtn: false,
     editBtn: false,
     delBtn: false,
-    height: getLocal('height') - 30 ,
+    height: getLocal('height') - 80 ,
     column:[
       {
         label: '编号',

@@ -1,5 +1,5 @@
 <template>
-<div style="margin: 5px;">
+<basic-container style="margin: 5px;">
   <avue-crud :data="data" :option="option" v-model="form" :page.sync="page" v-bind="bindVal" v-on="onEvent" ref="userCrud">
     <template slot="avatarUrl" slot-scope="{row}" >
       <avue-avatar style="color: #f56a00; background-color: rgba(0,0,0,0)" size="large"
@@ -111,7 +111,7 @@
     </span>
   </el-dialog>
 
-</div>
+</basic-container>
 </template>
 
 <script>

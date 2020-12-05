@@ -1,3 +1,4 @@
+
 export default (app, option = {}) => {
   let mixins = {
     data () {
@@ -57,7 +58,9 @@ export default (app, option = {}) => {
             } else {
               data = res.data.data
             }
-            this.page.total =  res.meta['total' || 'threadCount'];
+            if (this.option.page === undefined || this.option.page ) {
+              this.page.total = res.meta.total || res.meta.threadCount || 0
+            }
             this.data = data[option.data || 'data'];
             if (this.listAfter) {
               this.listAfter(data)

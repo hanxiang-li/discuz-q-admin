@@ -19,8 +19,12 @@ import './styles/common.scss';
 import basicBlock from './components/basic-block/main'
 import basicContainer from './components/basic-container/main'
 import crudCommon from '@/mixins/crud.js'
-window.$crudCommon = crudCommon
+// import AvueUeditor from 'avue-plugin-ueditor'
+import VueEditor from 'vue-md-editor'
+
+Vue.use(VueEditor)
 Vue.use(router)
+// Vue.use(AvueUeditor);
 Vue.use(VueAxios, axios)
 Vue.use(Element, {
   i18n: (key, value) => i18n.t(key, value)
@@ -41,6 +45,7 @@ iconfontVersion.forEach(ele => {
   loadStyle(iconfontUrl.replace('$key', ele));
 })
 
+window.$crudCommon = crudCommon
 Vue.config.productionTip = false;
 
 new Vue({

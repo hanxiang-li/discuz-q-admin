@@ -80,5 +80,19 @@ export default {
 			icon: 'el-icon-s-check',
 			component: 'views/user/userReview',
 		},
+	],
+	'2': [
+		{
+			label: "内容分类",
+			path: "/cont-class",
+			icon: 'icon-align-left',
+			component: 'views/cont/contClass',
+		},
+		{
+			label: "内容管理",
+			path: "/cont-manage",
+			icon: 'icon-align-left',
+			component: 'views/cont/contManage',
+		},
 	]
 }

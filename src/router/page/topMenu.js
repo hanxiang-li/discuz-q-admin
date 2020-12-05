@@ -13,4 +13,11 @@ export default [
 		component: "Layout",
 		parentId: '1'
 	},
+	{
+		label: "内容",
+		path: "#",
+		icon: 'el-icon-document',
+		component: "Layout",
+		parentId: '2'
+	},
 ]

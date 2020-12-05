@@ -1,5 +1,5 @@
 <template>
-<div>
+<basic-container>
   <avue-crud  :data="data" :option="option" v-model="form" :page.sync="page" v-bind="bindVal" v-on="onEvent"
     @selection-change="selectionChange" ref="userReview">
     <template slot="menuLeft">
@@ -11,7 +11,7 @@
       <el-button icon="el-icon-close" :size="size" :type="type" @click="review(row, 0, false)">拒绝</el-button>
     </template>
   </avue-crud>
-</div>
+</basic-container>
 </template>
 
 <script>

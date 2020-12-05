@@ -65,10 +65,10 @@ request.interceptors.response.use(
         const value = data[i]
         try {
           value.detail.forEach(k => {
-            info.push(k)
+            info.push(k.message || k)
           })
         } catch (e){
-          info.push(value.detail || value.code)
+          info.push(value.detail.message ? value.detail.message : value.detail || value.detail.error_description || value.code)
         }
       }
       let txt = ''
