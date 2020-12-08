@@ -15,8 +15,17 @@ export default () => {
 		height: getLocal('height') - 100,
 		column:[
 			{
+				label: '帖子分类',
+				prop: 'category',
+				overHidden: true,
+				formatter: 	function(row,value){
+					return value.name
+				}
+			},
+			{
 				label: '主题名称',
 				prop: 'title',
+				overHidden: true,
 			},
 			{
 				label: '作者',

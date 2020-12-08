@@ -68,7 +68,13 @@ request.interceptors.response.use(
             info.push(k.message || k)
           })
         } catch (e){
-          info.push(value.detail.message ? value.detail.message : value.detail || value.detail.error_description || value.code)
+          if (value.detail){
+            info.push(value.detail.message || value.detail.error_description )
+          } else if (value.code){
+            info.push(value.code)
+          } else {
+            info.push('未知错误：' + JSON.stringify(value))
+          }
         }
       }
       let txt = ''

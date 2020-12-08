@@ -78,7 +78,7 @@ export default () => {
 				prop: 'updated_at',
 				type: 'datetime',
 				format: 'yyyy-MM-dd HH:mm:ss',
-				cell: true,
+				cell: false,
 			},
 		]
 	}

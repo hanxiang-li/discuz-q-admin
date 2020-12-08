@@ -91,8 +91,52 @@ export default {
 		{
 			label: "内容管理",
 			path: "/cont-manage",
-			icon: 'icon-align-left',
+			icon: 'icon-filesearch',
 			component: 'views/cont/contManage',
+		},
+		{
+			label: "内容审核",
+			path: "/cont-review",
+			icon: 'icon-audit',
+			component: 'views/cont/contReview',
+		},
+		{
+			label: "话题管理",
+			path: "/topics-management",
+			icon: 'icon-number',
+			component: 'views/cont/topics',
+		},
+		{
+			label: "举报管理",
+			path: "/report-manage",
+			icon: 'icon-error',
+			component: 'views/cont/reportManage',
+		},
+		{
+			label: "回收站",
+			path: "/recycle-bin",
+			icon: 'el-icon-delete',
+			component: 'views/cont/recycleBin',
+		},
+	],
+	'3': [
+		{
+			label: "资金明细",
+			path: "/wallet-details",
+			icon: 'icon-wallet',
+			component: 'views/wallet/fundDetails',
+		},
+		{
+			label: "订单列表",
+			path: "/order-record",
+			icon: 'icon-rizhi',
+			component: 'views/wallet/orderRecord',
+		},
+		{
+			label: "提现管理",
+			path: "/withdrawal-application",
+			icon: 'icon-moneycollect-fill',
+			component: 'views/wallet/withdrawalApplication',
 		},
 	]
 }

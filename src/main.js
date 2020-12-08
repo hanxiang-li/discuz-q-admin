@@ -20,9 +20,7 @@ import basicBlock from './components/basic-block/main'
 import basicContainer from './components/basic-container/main'
 import crudCommon from '@/mixins/crud.js'
 // import AvueUeditor from 'avue-plugin-ueditor'
-import VueEditor from 'vue-md-editor'
 
-Vue.use(VueEditor)
 Vue.use(router)
 // Vue.use(AvueUeditor);
 Vue.use(VueAxios, axios)

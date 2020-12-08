@@ -22,7 +22,6 @@ module.exports = {
       'vuex': 'Vuex',
       'axios': 'axios',
       'element-ui': 'ELEMENT',
-      'vue-editor': 'VueEditor',
     })
     const entry = config.entry('app')
     entry
@@ -40,7 +39,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       '/dzq': {
-        target: 'https://www.wegame100.com', // 设置你调用的接口域名和端口号
+        target: 'https://bbs.work100.com.cn', // 设置你调用的接口域名和端口号
         changeOrigin: true,   // 跨域
         pathRewrite: {
           '^/dzq': ''

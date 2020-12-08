@@ -20,4 +20,11 @@ export default [
 		component: "Layout",
 		parentId: '2'
 	},
+	{
+		label: "财务",
+		path: "#",
+		icon: 'icon-Dollar',
+		component: "Layout",
+		parentId: '3'
+	},
 ]
