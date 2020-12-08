@@ -138,5 +138,11 @@ export default {
 			icon: 'icon-moneycollect-fill',
 			component: 'views/wallet/withdrawalApplication',
 		},
+		{
+			label: "财务统计",
+			path: "/financial-statistics",
+			icon: 'icon-linechart',
+			component: 'views/wallet/financialStatistics',
+		},
 	]
 }

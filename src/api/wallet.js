@@ -24,3 +24,7 @@ export const updateWalletCashReview = (data) => request({
 	data
 })
 
+export const queryFinanceList = () => request({
+	url: '/api/statistic/finance',
+	method: 'get',
+})
