@@ -36,7 +36,7 @@
       </div>
     </div>
     <div style="bottom: 10px;position: fixed;text-align: center;width: 100%;color: #000;">
-      <p><a href="https://work100.com.cn" target="_blank">work100提供技术支持</a></p>
+      <p><a href="https://work100.com.cn" target="_blank">work100提供技术支持</a> 当前版本：{{v}}</p>
       <p>Copyright © 2020 work100.com.cn 版权所有</p>
     </div>
   </div>
@@ -57,6 +57,7 @@ export default {
     userLogin,
     codeLogin,
     thirdLogin,
+    
     faceLogin,
     topLang,
     topColor
@@ -64,7 +65,8 @@ export default {
   data () {
     return {
       time: "",
-      activeName: "user"
+      activeName: "user",
+      v: '1.0.0'
     };
   },
   created () {
