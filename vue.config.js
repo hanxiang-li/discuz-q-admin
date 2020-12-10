@@ -39,8 +39,9 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       '/dzq': {
-        target: 'https://www.wegame100.com', // 设置你调用的接口域名和端口号
-        changeOrigin: true,   // 跨域
+        // target: 'http://www.wegame100.com',
+        target: 'https://bbs.work100.com.cn',
+        changeOrigin: true,
         pathRewrite: {
           '^/dzq': ''
         }

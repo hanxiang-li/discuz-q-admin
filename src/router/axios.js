@@ -58,6 +58,9 @@ request.interceptors.response.use(
       }
     },
     (error) => {
+      if (error.response.config.url.indexOf('/api/oauth/wechat/pc/login') !== -1){
+        return null
+      }
       NProgress.done();
       let info = []
       const data = error.response.data.errors

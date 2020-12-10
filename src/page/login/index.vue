@@ -19,19 +19,22 @@
 <!--            <top-lang></top-lang>-->
           </h4>
           <userLogin v-if="activeName==='user'"></userLogin>
-          <!--<codeLogin v-else-if="activeName==='code'"></codeLogin>
           <thirdLogin v-else-if="activeName==='third'"></thirdLogin>
-          <faceLogin v-else-if="activeName==='face'"></faceLogin>
+
+            <codeLogin v-else-if="activeName==='code'"></codeLogin>
+          <!--
+           <faceLogin v-else-if="activeName==='face'"></faceLogin>
+         -->
           <div class="login-menu">
             <a href="#"
                @click.stop="activeName='user'">{{ $t('login.userLogin') }}</a>
             <a href="#"
-               @click.stop="activeName='code'">{{ $t('login.phoneLogin') }}</a>
+               @click.stop="activeName='code'" v-if="loginOpen.qcloud.qcloud_sms">{{ $t('login.phoneLogin') }}</a>
+<!--            <a href="#"
+               @click.stop="activeName='face'">{{ $t('login.faceLogin') }}</a>-->
             <a href="#"
-               @click.stop="activeName='face'">{{ $t('login.faceLogin') }}</a>
-            <a href="#"
-               @click.stop="activeName='third'">{{ $t('login.thirdLogin') }}</a>
-          </div>-->
+               @click.stop="activeName='third'" v-if="loginOpen.passport.offiaccount_close">{{ $t('login.thirdLogin') }}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -48,16 +51,17 @@ import thirdLogin from "./thirdlogin";
 import faceLogin from "./facelogin";
 import { mapGetters } from "vuex";
 import { dateFormat } from "@/util/date";
-import { validatenull } from "@/util/validate";
 import topLang from "@/page/index/top/top-lang";
 import topColor from "@/page/index/top/top-color";
+import {queryForum} from "@/api/site";
+import {dataFormatter} from "@/util/tools";
+import {setLocal} from "@/util/store";
 export default {
   name: "login",
   components: {
     userLogin,
     codeLogin,
     thirdLogin,
-    
     faceLogin,
     topLang,
     topColor
@@ -66,11 +70,19 @@ export default {
     return {
       time: "",
       activeName: "user",
-      v: '1.0.0'
+      v: '1.0.0',
+      loginOpen: {
+        qcloud: {qcloud_sms: false},
+        passport: {offiaccount_close: false},
+      }
     };
   },
   created () {
     this.getTime();
+    queryForum().then(res => {
+      this.loginOpen = dataFormatter(res)
+      setLocal('formData', this.loginOpen)
+    })
     setInterval(() => {
       this.getTime();
     }, 1000);

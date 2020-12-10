@@ -1,54 +1,59 @@
 <template>
-  <div class="social-container">
-    <div class="box"
-         @click="handleClick('wechat')">
-      <span class="container"
-            :style="{backgroundColor:'#6ba2d6'}">
-        <i icon-class="wechat"
-           class="iconfont icon-weixin"></i>
-      </span>
-      <p class="title">{{$t('login.wechat')}}</p>
-    </div>
-    <div class="box"
-         @click="handleClick('tencent')">
-      <span class="container"
-            :style="{backgroundColor:'#8dc349'}">
-        <i icon-class="qq"
-           class="iconfont icon-qq"></i>
-      </span>
-      <p class="title">{{$t('login.qq')}}</p>
-    </div>
-  </div>
+<basic-container class="social-container" v-loading="loading" style="text-align: center;">
+  <el-image :src="data.base64_img" style="width: 200px;"/>
+</basic-container>
 </template>
 
 <script>
-import { openWindow } from "@/util/util";
-
+import {getUserInfo, getWxImagesCode, getWxImagesCodeSearch} from "@/api/login";
+import {dataFormatter} from "@/util/tools";
+import {errorMsg} from "@/util/msg";
 export default {
   name: "thirdLogin",
+  data(){
+    return {
+      loading: true,
+      data: {}
+    }
+  },
+  created() {
+    this.getLoginImage()
+  },
   methods: {
-    handleClick(thirdpart) {
-      let appid, client_id, redirect_uri, url;
-      redirect_uri = encodeURIComponent(
-        window.location.origin + "/#/authredirect"
-      );
-      if (thirdpart === "wechat") {
-        appid = "xxxx";
-        url =
-          "https://open.weixin.qq.com/connect/qrconnect?appid=" +
-          appid +
-          "&redirect_uri=" +
-          redirect_uri +
-          "&state=WX&response_type=code&scope=snsapi_login#wechat_redirect";
-      } else if (thirdpart === "tencent") {
-        client_id = "xxxx";
-        url =
-          "https://graph.qq.com/oauth2.0/authorize?response_type=code&state=QQ&client_id=" +
-          client_id +
-          "&redirect_uri=" +
-          redirect_uri;
-      }
-      openWindow(url, thirdpart, 540, 540);
+    getLoginImage(){
+      const that = this
+      getWxImagesCode().then(res => {
+        this.data = dataFormatter(res)
+        this.loading = false
+        let timer = setInterval(() => {
+          getWxImagesCodeSearch(that.data.session_token).then(token => {
+            if (token) {
+              clearInterval(timer)
+              const {token_type, access_token, id} = dataFormatter(token)
+              getUserInfo(id).then(res => {
+                const userInfo = dataFormatter(res)
+                let flag = false
+                for (let i = 0; i < userInfo.groups.length; i++) {
+                  if (userInfo.groups[i].id === '1') {
+                    flag = true
+                    break;
+                  }
+                }
+                if (flag) {
+                  const token = token_type + ' ' + access_token
+                  this.$store.commit('SET_TOKEN', token);
+                  this.$store.commit('DEL_ALL_TAG');
+                  this.$store.commit('CLEAR_LOCK');
+                  this.$store.commit('SET_USERIFNO', userInfo);
+                  this.$router.push({ path: '/' });
+                } else {
+                  errorMsg('没有权限')
+                }
+              })
+            }
+          })
+        }, 1000)
+      })
     }
   }
 };
