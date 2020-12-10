@@ -9,7 +9,7 @@
             action="#"
             :show-file-list="false"
             :before-upload="(file) => {beforeAvatarUpload(file, 'logo')}">
-          <el-image v-if="obj.site_logo" :src="obj.site_logo" class="avatar" />
+          <el-image v-if="obj.site_logo" :src="obj.site_logo" class="avatar" fit="contain"/>
           <div v-else >
             <i class="el-icon-plus avatar-uploader-icon" style="margin-top: -30px;"/>
             <br/>
@@ -22,7 +22,7 @@
             :show-file-list="false"
             fit="contain"
             :before-upload="(file) => {beforeAvatarUpload(file, 'header_logo')}">
-          <el-image v-if="obj.site_header_logo" :src="obj.site_header_logo" class="avatar" />
+          <el-image v-if="obj.site_header_logo" :src="obj.site_header_logo" class="avatar" fit="contain"/>
           <div v-else >
             <i class="el-icon-plus avatar-uploader-icon" style="margin-top: -30px;"/>
             <br/>
@@ -34,7 +34,7 @@
             action="#"
             :show-file-list="false"
             :before-upload="(file) => {beforeAvatarUpload(file, 'background_image')}">
-          <el-image v-if="obj.site_background_image" :src="obj.site_background_image" class="avatar" />
+          <el-image v-if="obj.site_background_image" :src="obj.site_background_image" class="avatar" fit="contain"/>
           <div v-else >
             <i class="el-icon-plus avatar-uploader-icon" style="margin-top: -30px;"/>
             <br/>
@@ -46,7 +46,7 @@
             action="#"
             :show-file-list="false"
             :http-request="(file) => {beforeAvatarUpload(file, 'favicon')}">
-          <el-image v-if="obj.site_favicon" :src="obj.site_favicon" class="avatar" />
+          <el-image v-if="obj.site_favicon" :src="obj.site_favicon" class="avatar" fit="contain"/>
           <div v-else >
             <i class="el-icon-plus avatar-uploader-icon" style="margin-top: -30px;"/>
             <br/>

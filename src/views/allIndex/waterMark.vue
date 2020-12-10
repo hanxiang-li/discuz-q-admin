@@ -10,7 +10,7 @@
         :active-value="true"
         :inactive-value="false"/>
   </div>
-  <div>
+  <div style="display: flow-root;">
     <label>水印图片:</label>
     <br/>
     <el-upload
@@ -18,9 +18,11 @@
         :http-request="uploadImage"
         action="#"
         :show-file-list="false">
-      <img v-if="data.watermark_image" :src="data.watermark_image" class="avatar">
+      <el-image v-if="data.watermark_image" :src="data.watermark_image" class="avatar" fit="contain" />
       <i v-else class="el-icon-plus avatar-uploader-icon"></i>
     </el-upload>
+  </div>
+  <div style="display: flow-root;">
     <el-button type="text" @click="deleteImage">删除</el-button>
     <br />
     请选择图片（.png格式）进行上传
