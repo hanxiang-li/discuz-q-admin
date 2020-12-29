@@ -123,7 +123,8 @@ export default {
                 "type": "login",
                 captcha_rand_str: res.randstr,
                 captcha_ticket: res.ticket
-              }
+              },
+              type: 'sms/send'
             }
           }).then(() => {
             that.loading = true

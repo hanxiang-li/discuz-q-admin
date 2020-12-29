@@ -16,6 +16,12 @@
           开启用户名模式后，将以用户名密码为核心进行注册和登录。开启手机号模式后，将以手机号为核心进行注册和登录。开启微信无感模式后，微信内将自动注册和登录，且各端的注册和登录，将仅支持微信。
         </el-tag>
       </el-form-item>
+      <el-form-item label="扩展信息">
+        <el-checkbox v-model="data.site.open_ext_fields" class="input" true-label="1" false-label="0">
+          扩展信息
+        </el-checkbox>
+        注册时需要用户填写的额外信息
+      </el-form-item>
       <el-form-item label="新用户审核">
         <el-checkbox v-model="data.reg.register_validate" class="input">新用户审核</el-checkbox>   设置新注册的用户是否需要审核
       </el-form-item>
@@ -104,6 +110,7 @@ export default {
         this.data = {
           agreement: data.agreement,
           reg: data.set_reg,
+          site: data.set_site
         }
         this.qcloud_sms = data.qcloud.qcloud_sms !== true
         this.qcloud_wx = !(data.passport.offiaccount_close === true || data.passport.miniprogram_close === true);
