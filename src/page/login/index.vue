@@ -18,10 +18,10 @@
             Discuz！Q管理后台
 <!--            <top-lang></top-lang>-->
           </h4>
-          <userLogin v-if="activeName==='user'"></userLogin>
-          <thirdLogin v-else-if="activeName==='third'"></thirdLogin>
+          <userLogin v-if="activeName==='user'"/>
+          <thirdLogin v-else-if="activeName==='third'"/>
 
-            <codeLogin v-else-if="activeName==='code'"></codeLogin>
+            <codeLogin v-else-if="activeName==='code'"/>
           <!--
            <faceLogin v-else-if="activeName==='face'"></faceLogin>
          -->

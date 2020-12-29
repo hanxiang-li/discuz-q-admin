@@ -13,7 +13,8 @@ export default {
   data(){
     return {
       loading: true,
-      data: {}
+      data: {},
+      timer: null
     }
   },
   created() {
@@ -25,10 +26,10 @@ export default {
       getWxImagesCode().then(res => {
         this.data = dataFormatter(res)
         this.loading = false
-        let timer = setInterval(() => {
+        this.timer = setInterval(() => {
           getWxImagesCodeSearch(that.data.session_token).then(token => {
             if (token) {
-              clearInterval(timer)
+              clearInterval(this.timer)
               const {token_type, access_token, id} = dataFormatter(token)
               getUserInfo(id).then(res => {
                 const userInfo = dataFormatter(res)
@@ -55,6 +56,9 @@ export default {
         }, 1000)
       })
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 };
 </script>

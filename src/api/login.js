@@ -25,9 +25,16 @@ export const getWxImagesCodeSearch = (data) => request({
 	method: 'get'
 })
 
-// 获取短信登陆二维码
+// 获取短信登陆验证码
 export const getPhoneCode = (data) => request({
-	url: ` /api/sms/send`,
+	url: `/api/sms/send`,
+	method: 'post',
+	data
+})
+
+// 短信登陆
+export const loginByPhoneCode = (data) => request({
+	url: `/api/sms/verify`,
 	method: 'post',
 	data
 })

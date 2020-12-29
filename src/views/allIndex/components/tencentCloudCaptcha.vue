@@ -21,15 +21,14 @@
           v-model="data.qcloud_captcha_secret_key" />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit" disabled>提交修改</el-button>
-      * 暂未适配
+      <el-button type="primary" @click="onSubmit">提交修改</el-button>
     </el-form-item>
   </el-form>
 </template>
 
 <script>
 import {cache, updateSiteSet} from "@/api/site";
-import {okMsg} from "@/util/msg";
+import {errorMsg, okMsg} from "@/util/msg";
 
 export default {
   name: "tencentCloudCaptcha",
@@ -58,13 +57,32 @@ export default {
           list.push(val)
         }
       }
-      updateSiteSet({data: list}).then(() => {
-        okMsg()
-        cache()
-        this.$emit('loading', false)
-      }).catch(() => {
-        this.$emit('loading', false)
+      const captcha = new TencentCaptcha(this.data['qcloud_captcha_app_id'], res => {
+        if (res.ret === 0) {
+          list.push({
+            attributes: {
+              key: "qcloud_captcha_randstr",
+              value: res.randstr,
+              tag: "qcloud"}
+          })
+          list.push({
+            attributes: {
+              key: "qcloud_captcha_ticket",
+              value: res.ticket,
+              tag: "qcloud"}
+          })
+          updateSiteSet({data: list}).then(() => {
+            okMsg()
+            cache()
+            this.$emit('loading', false)
+          }).catch(() => {
+            this.$emit('loading', false)
+          })
+        } else {
+          errorMsg('设置失败')
+        }
       })
+      captcha.show()
     }
   }
 }

@@ -44,7 +44,7 @@
 <script>
 import { isvalidatemobile } from "@/util/validate";
 import { mapGetters } from "vuex";
-import {getPhoneCode} from "@/api/login";
+import {getPhoneCode, getUserInfo, loginByPhoneCode} from "@/api/login";
 import {dataFormatter} from "@/util/tools";
 import {getLocal} from "@/util/store";
 import {errorMsg} from "@/util/msg";
@@ -127,7 +127,7 @@ export default {
               type: 'sms/send'
             }
           }).then(() => {
-            that.loading = true
+            that.loading = false
           })
         } else {
           errorMsg('验证失败')
@@ -138,9 +138,30 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$store.dispatch("LoginByPhone", this.loginForm).then(() => {
-            this.$router.push({ path: this.tagWel.value });
-          });
+          const { phone, code } = this.loginForm
+          loginByPhoneCode({data: {attributes: {mobile: phone, code: code, type: "login"}}}).then(token => {
+            const {token_type, access_token, id} = dataFormatter(token)
+            getUserInfo(id).then(res => {
+              const userInfo = dataFormatter(res)
+              let flag = false
+              for (let i = 0; i < userInfo.groups.length; i++) {
+                if (userInfo.groups[i].id === '1') {
+                  flag = true
+                  break;
+                }
+              }
+              if (flag) {
+                const token = token_type + ' ' + access_token
+                this.$store.commit('SET_TOKEN', token);
+                this.$store.commit('DEL_ALL_TAG');
+                this.$store.commit('CLEAR_LOCK');
+                this.$store.commit('SET_USERIFNO', userInfo);
+                this.$router.push({ path: '/' });
+              } else {
+                errorMsg('没有权限')
+              }
+            })
+          })
         }
       });
     }

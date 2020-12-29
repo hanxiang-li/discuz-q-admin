@@ -8,6 +8,7 @@ export default {
   menuTip: '没有发现菜单',
   feedback: '意见反馈',
   submit: '提交',
+  sms_verify_error: '验证码错误',
   wel: {
     info: '早安，Smallwei，Avue一款超乎你想象的框架！',
     dept: '我是avue团队下的一个部门-哈皮部门-哈皮职位',
