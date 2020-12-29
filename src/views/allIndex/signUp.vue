@@ -20,7 +20,7 @@
         <el-checkbox v-model="data.site.open_ext_fields" class="input" true-label="1" false-label="0">
           扩展信息
         </el-checkbox>
-        注册时需要用户填写的额外信息 
+        注册时需要用户填写的额外信息
       </el-form-item>
       <el-form-item label="新用户审核">
         <el-checkbox v-model="data.reg.register_validate" class="input">新用户审核</el-checkbox>   设置新注册的用户是否需要审核
