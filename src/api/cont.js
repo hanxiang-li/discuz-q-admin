@@ -91,3 +91,11 @@ export const updateReports = (data) => request({
 	method: data.type ? 'delete':'patch',
 	data
 })
+
+// 获取字段配置
+export const querySigninfields = (data) => request({
+	url: `/api/admin/signinfields`,
+	method: data ? 'post' : 'get',
+	data
+})
+

@@ -2,11 +2,11 @@
 <div style="margin: 5px;">
   <el-card class="box-card" :style="{height: height + 'px','overflow-y': 'auto'}">
     <el-form ref="form" :model="data" label-width="150px" v-loading="loading"
-             element-loading-text="信息读取中，时间过长请刷新" size="mini">
+      element-loading-text="信息读取中，时间过长请刷新" size="mini">
       <el-form-item label="新用户注册">
         <el-checkbox v-model="data.reg.register_close" class="input">允许新用户注册</el-checkbox>  设置是否允许游客注册成为会员
       </el-form-item>
-      <el-form-item label="注册于登录模式">
+      <el-form-item label="注册与登录模式">
         <el-radio-group v-model="data.reg.register_type" class="input">
           <el-radio :label="0">用户名模式</el-radio>
           <el-radio :label="1" :disabled="qcloud_sms">手机号模式</el-radio>
@@ -17,10 +17,16 @@
         </el-tag>
       </el-form-item>
       <el-form-item label="扩展信息">
-        <el-checkbox v-model="data.site.open_ext_fields" class="input" true-label="1" false-label="0">
-          扩展信息
-        </el-checkbox>
-        注册时需要用户填写的额外信息
+        <div style="width: 395px;float: left;">
+          <el-checkbox v-model="data.site.open_ext_fields" class="input" true-label="1" false-label="0"
+            style="width: 80px;" :disabled="open_ext_fields">
+            扩展信息
+          </el-checkbox>
+          <el-button type="text" @click="$refs.extFields.drawer = true">配置字段</el-button>
+        </div>
+        <div style="float: left;">
+          注册时需要用户填写的额外信息
+        </div>
       </el-form-item>
       <el-form-item label="新用户审核">
         <el-checkbox v-model="data.reg.register_validate" class="input">新用户审核</el-checkbox>   设置新注册的用户是否需要审核
@@ -68,12 +74,12 @@
             v-model="data.agreement.privacy_content">
         </el-input>
       </el-form-item>
-
       <el-form-item>
         <el-button type="primary" @click="onSubmit" class="input">提交修改</el-button>
       </el-form-item>
     </el-form>
   </el-card>
+  <ext-fields ref="extFields"/>
 </div>
 </template>
 
@@ -82,21 +88,26 @@ import {cache, queryForum, updateSiteSet} from "@/api/site";
 import {dataFormatter} from "@/util/tools";
 import {getLocal} from "@/util/store";
 import {okMsg} from "@/util/msg";
+import ExtFields from "@/views/allIndex/components/extFields";
+import {querySigninfields} from "@/api/cont";
 
 export default {
   name: "signUp",
+  components: {ExtFields},
   data(){
     return {
       data: {
         reg: {
           password_strength: []
         },
-        agreement: {}
+        agreement: {},
+        site: {}
       },
       loading: false,
       height: getLocal('height') + 50,
       qcloud_sms: false,
       qcloud_wx: false,
+      open_ext_fields: false,
     }
   },
   mounted() {
@@ -105,6 +116,9 @@ export default {
   methods: {
     init(){
       this.loading = true
+      querySigninfields().then(res => {
+        this.open_ext_fields = !(dataFormatter(res).length > 0)
+      })
       queryForum('?filter[tag]=agreement').then(res => {
         let data = dataFormatter(res)
         this.data = {
@@ -140,6 +154,13 @@ export default {
         }
         list.push(val)
       }
+      list.push({
+        attributes: {
+          key: 'open_ext_fields',
+          tag: "default",
+          value: this.data.site.open_ext_fields,
+        }
+      })
       updateSiteSet({data: list}).then(res => {
         okMsg()
         cache()
