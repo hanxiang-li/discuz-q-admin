@@ -36,10 +36,10 @@
     <div style="text-align: center;">
       <el-form label-position="top" label-width="80px" :model="form">
         <el-form-item label="提现间隔时间（天）">
-          <el-input-number v-model="form.cash_interval_time" :min="1" style="width: 200px;"/>
+          <el-input-number v-model="form.cash_interval_time" :min="0" style="width: 200px;"/>
         </el-form-item>
         <el-form-item label="提现手续费率（范围为：0-1）">
-          <el-input v-model="form.cash_interval_time"  style="width: 200px;"/>
+          <el-input v-model="form.cash_rate"  style="width: 200px;"/>
         </el-form-item>
         <el-form-item label="单次提现最小金额（元）">
           <el-input-number v-model="form.cash_min_sum" :min="1" style="width: 200px;"/>
