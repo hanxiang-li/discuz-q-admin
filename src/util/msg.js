@@ -39,16 +39,17 @@ export const errorMsg = (msg, center) => {
 
 export const m = (msg, type, center) => {
 	Message({
-		message: i18n.tc(msg),
+		message: msg,
 		type: type || 'success',
 		center: center || false,
 	})
 }
 
 export const boxMsg = (msg, type, callback) => {
-	MessageBox.alert(i18n.tc(msg), i18n.tc('msg.tips'), {
+	MessageBox.alert(i18n.tc(msg), '温馨提示', {
 		type: type || 'success',
 		confirmButtonText: '确定',
+		cancelButtonText: '取消',
 		callback: action => {
 			if(callback)
 			callback(action)
@@ -57,21 +58,21 @@ export const boxMsg = (msg, type, callback) => {
 }
 
 export const confirmMsg = (msg, type, okCallBack, catchBacllBak) => {
-	MessageBox.confirm(i18n.tc(msg), i18n.tc('msg.tips'), {
-		confirmButtonText: i18n.tc('button.ok'),
-		cancelButtonText: i18n.tc('button.cancel'),
+	MessageBox.confirm(msg, '温馨提示', {
+		confirmButtonText: '确定',
+		cancelButtonText: '取消',
 		type: type || 'success',
 	}).then(() => {
 		if (okCallBack){
 			okCallBack()
 		} else {
-			okMsg(i18n.tc('msg.success'))
+			okMsg()
 		}
 	}).catch(() => {
 		if (catchBacllBak){
 			catchBacllBak()
 		} else {
-			m(i18n.tc('msg.cancel'), 'info')
+			m('操作取消', 'info')
 		}
 	});
 }

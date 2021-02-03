@@ -80,4 +80,10 @@ export const queryGroups = () => request({
 	method: 'get',
 })
 
+export const setWitchskin = (data) => request({
+	url: '/api/switchskin',
+	method: 'post',
+	data
+})
+
 

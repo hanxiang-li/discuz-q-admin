@@ -8,6 +8,9 @@ export const serialize = data => {
     })
     return list.join('&');
 };
+export const getViewDom = () => {
+    return window.document.getElementById('avue-view').getElementsByClassName('el-scrollbar__wrap')[0]
+}
 export const getObjType = obj => {
     var toString = Object.prototype.toString;
     var map = {
@@ -27,9 +30,6 @@ export const getObjType = obj => {
     }
     return map[toString.call(obj)];
 };
-export const getViewDom = () => {
-    return window.document.getElementById('avue-view').getElementsByClassName('el-scrollbar__wrap')[0]
-}
 /**
  * 对象深拷贝
  */
